@@ -18,7 +18,7 @@ while ( <> ) {
 	} elsif ( $_[0] eq "@<TRIPOS>ATOM"  ) {
 		$status = "atom";
 		print "  write('Data Atoms') {\n";
-		print "#   atomID       molID    atomType        charge    X         Y         Z\n";
+		print "#   atomID       molID    atomType        charge      X           Y           Z\n";
 	} elsif ( $_[0] eq "@<TRIPOS>BOND"  ) {
 		$status = "bond";
 		print "  }\n";
@@ -43,7 +43,7 @@ while ( <> ) {
 	} elsif ( $status eq "atom" ) {
 		@modlin = split (/\s+/, $line);
 		$atomname[$modlin[1]] = $modlin[2];
-		$line = "    \$atom:".sprintf("%-7s", $modlin[2])."\$mol:".sprintf("%-4s", $modlin[7])."\@atom:".sprintf("%-7s", $modlin[6]).sprintf("%10.5f", $modlin[9]).sprintf("%10.5f", $modlin[3]).sprintf("%10.5f", $modlin[4]).sprintf("%10.5f", $modlin[5])."\n";
+		$line = "    \$atom:".sprintf("%-7s", $modlin[2])."\$mol:".sprintf("%-4s", $modlin[7])."\@atom:".sprintf("%-7s", $modlin[6]).sprintf("%10.5f", $modlin[9]).sprintf("%12.5f", $modlin[3]).sprintf("%12.5f", $modlin[4]).sprintf("%12.5f", $modlin[5])."\n";
 		print $line;
 	} elsif ( $status eq "bond" ) {
 		@modlin = split (/\s+/, $line);
